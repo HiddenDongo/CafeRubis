@@ -14,6 +14,7 @@ void setup()
 
 void draw()
 {
+  displayBill();
 }
 
 void loadData()
@@ -42,9 +43,9 @@ void displayProducts()
   textSize(15);
   for(Product p:products)
   {
-    fill(0, 255, 0);
+    fill(255, 255, 255);
     rect(xpos, ypos - height/16, width/3, height/10);
-    fill(255, 0, 255);
+    fill(0);
     textAlign(LEFT);
     text(p.name, xpos + xpos/16, ypos);
     textAlign(RIGHT);
@@ -53,43 +54,73 @@ void displayProducts()
   }
 }
 
+void displayBill()
+{
+  fill(255, 255, 255);
+  rect(width/2, height/8 - height/16, 4*width/9, height - height/8);
+  fill(0);
+  textAlign(CENTER);
+  text("Your Bill:",width/2 + 2*width/9, height/8);
+  
+  float xbill = width/2 + width/26;
+  float ybill = height/8 + height/14;
+  
+  for(Product b:bill)
+  {
+    textAlign(LEFT);
+    text(b.name, xbill, ybill);
+    textAlign(RIGHT);
+    text(b.price, xbill+width/3 ,ybill);
+    ybill += height/14;
+  }
+  
+  float billTotal = 0;
+  for(Product b:bill)
+  {
+    billTotal += b.price;
+  }
+  textAlign(CENTER);
+  text(billTotal, width/2 + 2*width/9, height- height/8);
+}
+
+
 void mousePressed()
 {
   if(mousePressed)
   {
     if(mouseX>width/16 && mouseX<width/16 + width/3 && mouseY>height/8 - height/16 && mouseY<height/8 - height/16 + height/10)
     {
-      Product prod = products.get(0);
+      Product prod = new Product("Americano", 2.5);
       bill.add(prod);
     }
     if(mouseX>width/16 && mouseX<width/16 + width/3 && mouseY>height/8 - height/16 + height/10 && mouseY<height/8 - height/16 + 2*height/10)
     {
-      Product prod = products.get(1);
-      bill.add(prod);
-    }
-    if(mouseX>width/16 && mouseX<width/16 + width/3 && mouseY>height/8 - height/16 + 2*height/10 && mouseY<height/8 - height/16 + 3*height/10)
-    {
-      Product prod = products.get(2);
+      Product prod = new Product("Cappuccino", 2.8);
       bill.add(prod);
     }
     if(mouseX>width/16 && mouseX<width/16 + width/3 && mouseY>height/8 - height/16 + 3*height/10 && mouseY<height/8 - height/16 + 4*height/10)
     {
-      Product prod = products.get(3);
+      Product prod = new Product("Latte", 2.8);
       bill.add(prod);
     }
     if(mouseX>width/16 && mouseX<width/16 + width/3 && mouseY>height/8 - height/16 + 4*height/10 && mouseY<height/8 - height/16 + 5*height/10)
     {
-      Product prod = products.get(4);
+      Product prod = new Product("Roibois Tea", 2.9);
       bill.add(prod);
-    }    
+    }
     if(mouseX>width/16 && mouseX<width/16 + width/3 && mouseY>height/8 - height/16 + 5*height/10 && mouseY<height/8 - height/16 + 6*height/10)
     {
-      Product prod = products.get(5);
+      Product prod = new Product("Lemon & Ginger tea", 2.9);
       bill.add(prod);
     }    
     if(mouseX>width/16 && mouseX<width/16 + width/3 && mouseY>height/8 - height/16 + 6*height/10 && mouseY<height/8 - height/16 + 7*height/10)
     {
-      Product prod = products.get(6);
+      Product prod = new Product("Chardonnay", 6.5);
+      bill.add(prod);
+    }    
+    if(mouseX>width/16 && mouseX<width/16 + width/3 && mouseY>height/8 - height/16 + 7*height/10 && mouseY<height/8 - height/16 + 8*height/10)
+    {
+      Product prod = new Product("Prosecco", 7.2);
       bill.add(prod);
     }    
   }
