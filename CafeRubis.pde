@@ -1,13 +1,14 @@
 //Kalyan Kola Cahill
 //C16357813
 
-ArrayList<Product> products;
-ArrayList<Product> bill;
+ArrayList<Product> products = new ArrayList<Product>();
+ArrayList<Product> bill = new ArrayList<Product>();
 
 void setup()
 {
   size(800,400);
   loadData();
+  printProducts();
 }
 
 void draw()
@@ -22,5 +23,13 @@ void loadData()
   {
     Product product = new Product(r);
     products.add(product);
+  }
+}
+
+void printProducts()
+{
+  for(Product p:products)
+  {
+    println(p.toString());
   }
 }
